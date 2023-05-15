@@ -1,0 +1,3 @@
+foreach($model in "Food", "Manufacturer", "ManufacturerFood", "Vehicle"){
+  echo dotnet aspnet-codegenerator controller -name ${model}sController -api -m $model -dc Lab7Context -outDir Controllers
+}

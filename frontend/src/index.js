@@ -2,12 +2,29 @@ import React, { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Root } from './root/Root';
+import { Home } from './home/Home';
 
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);
 
+const router = createBrowserRouter([
+  {
+    path: '',
+    element: <Root />,
+    children: [
+      {
+        path: '',
+        element: <Home />
+      }
+    ]
+  }
+])
+
 root.render(
   <StrictMode>
+    <RouterProvider router={router} />
   </StrictMode>
 );
 
