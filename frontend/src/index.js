@@ -2,9 +2,10 @@ import React, { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Root } from './root/Root';
 import { Home } from './home/Home';
+import { ChakraProvider } from '@chakra-ui/react';
 
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);
@@ -16,15 +17,17 @@ const router = createBrowserRouter([
     children: [
       {
         path: '',
-        element: <Home />
-      }
-    ]
-  }
-])
+        element: <Home />,
+      },
+    ],
+  },
+]);
 
 root.render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <ChakraProvider>
+      <RouterProvider router={router} />
+    </ChakraProvider>
   </StrictMode>
 );
 

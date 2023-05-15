@@ -45,6 +45,13 @@ namespace backend.Controllers
             return manufacturerFood;
         }
 
+        // GET: api/ManufacturerFoods/man/5
+        [HttpGet("man/{manId}")]
+        public async Task<ActionResult<IEnumerable<ManufacturerFood>>> GetManufacturerFoodByManufacturer(int manId)
+        {
+            return await _context.ManufacturerFood.Where(mf => mf.ManufacturerId == manId).Include(mf => mf.Food).ToListAsync();
+        }
+
         // PUT: api/ManufacturerFoods/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
