@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using backend.Models;
 using backend.Data;
+using backend.Dtos;
 
 namespace backend.Controllers
 {
@@ -23,13 +24,18 @@ namespace backend.Controllers
 
         // GET: api/Manufacturers
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Manufacturer>>> GetManufacturer()
+        public async Task<ActionResult<IEnumerable<ManufacturerDto>>> GetManufacturer()
         {
           if (_context.Manufacturer == null)
           {
               return NotFound();
           }
-            return await _context.Manufacturer.ToListAsync();
+            return await _context.Manufacturer
+            .Include(m => m.Vehicles)
+            .Include(m => m.ManufacturerFoods)
+            .ThenInclude(mf => mf.Food)
+            .Select(m => new ManufacturerDto(m))
+            .ToListAsync();
         }
 
         // GET: api/Manufacturers/5

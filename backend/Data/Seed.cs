@@ -33,10 +33,20 @@ public static class Seed
   public static List<Food> GetFoods(int count = 10)
   {
     var foodId = 1;
+    var foods = new string[]{
+      "Burger",
+      "Fries",
+      "Pizza",
+      "Sushi",
+      "Coke",
+      "Salad",
+      "Kebab",
+      "Pie",
+    };
     var faker = new Faker<Food>().Rules((faker, food) =>
     {
       food.Id = foodId++;
-      food.Name = faker.Lorem.Word();
+      food.Name = faker.PickRandom(foods);
       food.Description = faker.Lorem.Paragraph();
     });
     return faker.Generate(count);

@@ -7,3 +7,4 @@ public class ManufacturerFood{
   public Manufacturer Manufacturer { get; set; } = default!;
   public int ManufacturerId { get; set; }
 }
+
